@@ -1,0 +1,125 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define A(I,J) (*(A+(I)*n+(J)))
+#define B(I,J) (*(B+(I)*n+(J)))
+#define C(I,J) (*(C+(I)*n+(J)))
+
+#define alt  printf("\n")
+#define yan  printf(" ");
+
+void takearay(int ,double *);
+void seearay(int ,double *);
+void jordan(int ,double *,double *);
+void unit(int ,double*);
+
+int main()
+{
+    int n;
+   double *A,*B,*C;
+   printf("Number of row and column of matrix\n");
+   scanf("%d",&n);
+  
+  A=(double*)malloc(n*n*sizeof(double));
+  B=(double*)malloc(n*n*sizeof(double));
+  C=(double*)malloc(n*n*sizeof(double));
+
+ printf("The matrix whose inverse is desired to be calculated:");
+ alt;
+ 
+ takearay(n,A);
+ 
+ system("cls");
+ 
+ printf("The matrix whose inverse is desired to be calculated:");
+  alt;
+       seearay(n,A);
+        alt;
+     unit(n,B);// creating the unit matrix n*n to obtain inverse matrix of matrix A.
+ 
+ alt;
+
+  jordan(n,A,B);// calling the function which will give us ht inverse of A matrix.
+  
+  return 0;
+}
+
+
+void takearay(int n,double *A){//Taking Array.
+ int i,j;
+ for(i=0;i<n;i++)
+ for(j=0;j<n;j++)
+ scanf("%lf",&A(i,j));
+ 
+}
+//To see the array in any desired time to control matrix operations.
+void seearay(int n,double *A){
+ int i,j;
+ for(i=0;i<n;i++){
+   for(j=0;j<n;j++){
+     printf("%lf",A(i,j));
+  yan;
+   }  
+  alt;
+
+ 
+}
+
+}
+
+ void jordan(int n,double *A,double *B){
+  int i,j,k;
+  int o=0;
+  double m;
+      for(i=0;i<n;i++){ 
+    
+     for(j=0;j<n;j++){
+       
+       if(j!=i){        
+        m=A(j,i)/A(i,i);
+     for(k=0;k<n;k++){
+         A(j,k)-=m*A(i,k);
+            B(j,k)-=m*B(i,k);   
+            }
+          
+             }              
+         }
+     }
+   
+   
+
+
+   
+
+   ////////////I have to divide the each row of B  by diagonal element of each row of eliminated matrix A.
+   for(i=0;i<n;i++){
+    
+    for(j=0;j<n;j++){
+    
+     B(i,j)=B(i,j)/A(o,o);   
+          }
+     o++;// o is a parameter to use the diagonal elements of A matrix.  
+ 
+       }
+       
+   printf("Invers of the matrix:");
+   alt;
+   seearay(n,B);
+   
+       
+       
+ }
+
+void unit(int n ,double*B){
+ int i,j;
+ for(i=0;i<n;i++)
+ for(j=0;j<n;j++){
+  if(i==j){
+   B(i,j)=1;
+  }
+  else
+  B(i,j)=0;
+ }
+ 
+}
+
+ //http://acihatbozkurt.blogspot.com/2018/03/inverse-of-square-matrix.html

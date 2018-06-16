@@ -1,0 +1,149 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#define in printf("\n")
+double func(double x,double *coef,int order);
+ double coefs(double *a,int order);
+ double writ(double *a,int mag);
+ double seepol(double *a,int order);
+ double findinterval(double xleft,double xright,double stepsize,double x,double *coef,int order);
+int main()
+{
+ int order,cont;
+ double x,xleft,xright,stepsize;
+ printf("please enter the order of polynomial ");
+ scanf("%d",&order);
+ system("cls");
+ printf("The order is %d.",order);
+ in;
+ in;
+ double coeff[order];
+ coefs(coeff,order);
+ in;
+ system("cls");
+ printf("You create this polynomial");
+ in;
+ seepol(coeff,order);
+ in;
+ printf("To find the possible interval that include a root push '1'");
+ in;
+ in;
+ printf("To find the value of polynomial at any point push ''0''");
+ in;
+ scanf("%d",&cont);
+ if(cont==0){
+  in;
+ system("cls");
+ printf("You create this polynomial");
+ in;
+ seepol(coeff,order);
+ in;
+  printf("Tell us the value that you want to find?");
+  in;
+  scanf("%lf",&x);
+  system("cls");
+ printf("You create this polynomial");
+ in;
+ seepol(coeff,order);
+ in;
+  printf("f(%lf)=%lf",x,func(x,coeff,order));
+ }else if(cont==1){
+    system("cls");
+ system("cls");
+ printf("You create this polynomial");
+ in;
+ seepol(coeff,order);
+ in;
+ in;
+ 
+    printf("Please Tell us The interval that you want to check");
+    in;
+    printf("First down point ?");
+    scanf("%lf",&xleft);
+    printf("Up point? ");
+    scanf("%lf",&xright);
+    printf("Tell us stepsize");
+    scanf("%lf",&stepsize);
+ in;
+ findinterval(xleft,xright,stepsize,x,coeff,order);
+ }else
+ printf("Please do not kid with me");
+ 
+return 0; 
+}
+
+double func(double x,double *coef,int order)
+{
+ int i;
+ double sum=0.0;
+ for(i=0;i<=order;i++)
+ sum=sum+((*(coef+i))*pow(x,i));
+  return sum;
+ }
+ double coefs(double *a,int order){
+  int i;
+  printf("Please Enter The Coefficients of Polynomial");
+  in;
+  in;
+  printf("From least order's coefficent to most");
+  in;
+  in;
+  for(i=0;i<=order;i++){
+  printf("%dth element coefficient is\t",i+1);
+  scanf("%lf",(a+i)); 
+  }  
+ }
+double writ(double *a,int mag){
+ int i=0;
+ while(i<mag){
+printf("%lf",*(a+i));
+in;
+i++;
+ }
+}
+double seepol(double *a,int order)
+{
+ int i=order;
+ printf("f(x)=");
+ while(i>=0){
+  
+  printf("%.2lf",*(a+i));
+  if(i!=0)
+  printf("*x^%d ",i);
+  if(i!=0)
+  printf("+");
+  i--;
+ }
+}
+
+double findinterval(double xleft,double xright,double stepsize,double x,double *coef,int order){
+
+ double xend=xright;
+ xright=xleft+stepsize;
+
+ while(xleft<xend && (func(xleft,coef,order)*func(xright,coef,order))>0 )
+ {
+ 
+  xleft=xright;
+  xright=xright+stepsize;
+  if(xright>xend)
+  xright=xend;
+   }
+   
+  if(func(xleft,coef,order)*func(xright,coef,order)>0){
+    in;
+    printf("No root in this interval");
+    in;
+  }
+  
+   
+ if(func(xleft,coef,order)*func(xright,coef,order)<0){
+  
+  printf("There is a root between [%lf  %lf]",xleft,xright);
+  in;
+  
+  
+ } 
+ 
+}
+//http://acihatbozkurt.blogspot.com/2018/03/finding-interval-that-include-root-of.html

@@ -1,0 +1,122 @@
+#include <stdio.h>
+#include <math.h>
+
+#define PI 3.14159265
+
+
+double fonk(double x){
+
+double retvalue;
+
+retvalue=2*x-(x*sin(x))-0.5;
+//printf("\n fonkvalue%lf",retvalue);
+
+return retvalue;
+
+}
+
+double derivat(double x){
+ 
+ double retvalue=2-(sin(x)+x*cos(x));
+ return retvalue;
+ 
+ 
+ 
+}
+
+double erro(double old, double nev){
+  double eror= ((nev-old)/nev)*100;
+ if(eror > 0){
+ // printf("%lf",eror);
+  return eror;
+ }else{
+   // printf("-%lf",eror);
+
+ return -1*eror;
+}
+}
+
+
+
+
+
+int main(){
+ 
+ int i=1;
+ double array[25];
+ double error[25];
+ double guess,guessnew;
+ double tolarance;
+ printf("enter your guess;");
+ scanf("%lf",&guess);
+    printf("enter your tolarance;");
+ scanf("%lf",&tolarance);
+     array[0]=guess;   
+    array[1]=guess-(fonk(guess)/derivat(guess));
+ 
+    while(i<25){
+ 
+    array[i+1]=array[i]-(fonk(array[i])/derivat(array[i]));   //yeni degerimiz:
+ 
+ 
+  if((array[1]-array[0])>0){          /////////////// ilk error deðeri:
+  error[0]=((array[1]-array[0])/array[1])*100;  
+  }else{
+   error[0]=((array[1]-array[0])/array[1])*-100;
+  }
+ 
+ 
+ 
+ 
+ 
+
+ 
+    error[i]=erro(array[i-1],array[i]); 
+     
+      if(error[i]<tolarance){
+     
+    
+        break;
+     }
+   
+    
+    
+ 
+     i++;
+    }
+     
+ printf("itaretaed number:%d\t\troot:%lf",i,array[i]);
+  
+ //printf("\n%lf\n",error[0]);
+ //printf("%lf\n",array[1]);
+
+int j=0;
+printf("\nerror:\t\t\troots:\n");
+ while(j<=i){
+  
+  printf("%lf\t\t%lf\n",error[j],array[j]);
+  
+  
+  
+  j++;
+  
+  
+  
+  
+ }
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+}
+//http://acihatbozkurt.blogspot.com/2017/10/newtons-method-example.html

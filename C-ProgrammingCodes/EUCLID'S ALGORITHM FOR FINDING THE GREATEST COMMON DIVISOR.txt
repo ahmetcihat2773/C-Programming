@@ -1,0 +1,55 @@
+#include <stdio.h>
+
+ ////////////////////////       EUCLID'S ALGORITHM FOR FINDING THE GREATEST COMMON DIVISOR/////////////////////////////////
+      
+      //The algorithm assumed that  b>a in function prototype  
+
+
+int gecomdiv(int a,int b);//Function prototype
+int main()
+{
+ int a,b,temp;// a and b the two number that will be taken from user.temp is for just exchanging the values of a and b
+ //becouse b has to be bigger than a according to algorithm that's why I implement some if else statement to ensure that b>a.
+   printf("Enter the two number\n");
+   scanf("%d",&a);
+   scanf("%d",&b);
+   
+  if(a>b){
+      
+      temp=a;
+      a=b;
+      b=temp;  
+      // here b>a is true anymore.
+    gecomdiv(a,b);
+  }
+   else if(a==0||b==0){
+    printf("invalid input or inputs");
+   }else{
+    gecomdiv(a,b);
+   }
+  
+   
+   return 0;
+}
+
+gecomdiv(int a,int b){
+ 
+ if(a==0){
+printf("Greatest Common Divisor=%d",b);  
+ }
+ else{
+  return gecomdiv(b%a,a);
+ }
+ 
+ 
+ 
+ 
+}
+
+
+   
+  
+  //http://acihatbozkurt.blogspot.com/2018/03/euclids-algorithm-for-finding-greatest.html
+  
+  
+  

@@ -1,0 +1,18 @@
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+int main(){
+int x=8;
+srand(time(NULL));
+
+
+{
+ int x=rand()%6;
+ printf("%d",x);
+ 
+}
+printf("\n%d",x);
+ return 0;
+}
+//http://acihatbozkurt.blogspot.com/2018/02/rast-gele-saylar-olusturma.html

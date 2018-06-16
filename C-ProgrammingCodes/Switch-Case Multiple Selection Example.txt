@@ -1,0 +1,69 @@
+#include <stdio.h>
+ int main(  )
+ {
+  char anot;
+  int asay=0,bsay=0,csay=0,dsay=0,fsay=0;//These are counter
+
+   printf("Please Enter Letter grades:\n");
+  printf("Enter the EOF to end:n");
+  while((anot=getchar())!=EOF){//to end <ctrl> z if your system is windows
+//but if your system is Linux/Unix/Mac OSX system you have to use <cntrl>d
+
+
+   switch(anot){
+    case 'A': 
+    ++asay;
+  printf("Please Enter Letter grades:\n");
+  printf("Enter the EOF to end\n");
+    break;//this break allow us to exit from program
+    case 'B' :
+    ++bsay;
+    printf("Please Enter Letter grades:\n");
+  printf("Enter the EOF to end\n");
+    break;
+
+    case 'C' :
+    ++csay;
+    printf("Please Enter Letter grades:\n");
+  printf("Enter the EOF to end\n");
+    break;
+
+    case 'D' :
+    ++dsay;
+    printf("Please Enter Letter grades:\n");
+  printf("Enter the EOF to end\n");
+    break;
+
+    case 'F' :
+    ++fsay;
+    printf("Please Enter Letter grades:\n");
+  printf("Enter the EOF to end\n");
+    break;
+
+
+    case '\n' ://If user enter these program return to beginning
+      case '\t' :// it means it start from while
+    case ' ' :   
+    break;
+
+     default://here default means if your all condition is not true for your case
+// make this action which listed down
+      printf("Your character is undesirable\n");
+      printf("It shoul be one of these(A,B,C,D,F):");
+      break;
+   }
+
+
+  }
+
+  printf("A:%d\n",asay);
+  printf("B:%d\n",bsay);
+  printf("C:%d\n",csay);
+  printf("D:%d\n",dsay);
+  printf("F:%d",fsay);
+
+
+
+ return 0; 
+}
+//http://acihatbozkurt.blogspot.com/2016/06/switch-case-multiple-selection-ornegi.html

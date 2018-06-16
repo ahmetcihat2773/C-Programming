@@ -1,0 +1,96 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define A(I,J) (*(a+(I)*n+(J)))
+#define WORK(I,J) (*(w+(I)*(n+1)+(J)))
+
+void simple_gaus(double *a,double b[],double *w,double x[],int n);
+// simple gauss function takes two pointer from user which are a and w
+// and also it takes arrays b and x. b is the solution vector for Ax=b equation and x is unknowns vector.
+void seearraymul(double *a,int m,int n);// m num of row n is num of col
+// seearraymul is used for showing  the inputs of matrix.
+void seearrayone(double a[],int n);
+// seearrayone function is used for showing the inputs of any vector.
+int main(){
+ int n;// number of unknowns.
+ printf("How many unkowns do you have ?");
+ scanf("%d",&n);
+  printf("Coefficent Matrix %d*%d\n",n,n);
+ int i,k,j;
+ double sol[n];//solution vector
+ double first[n][n];// coefficients matrix
+ double work[n][n+1];
+ double b[n];// unknowns vector.
+
+ for(i=0;i<n;i++){
+  for(j=0;j<n;j++){
+   scanf("%lf",&first[i][j]);
+  }  
+ } 
+ printf("Solution Matrix\n"); 
+  
+ for(i=0;i<n;i++){
+
+ scanf("%lf",&b[i]);
+}
+system("cls");
+printf("Coefficients matrix\n");
+ seearraymul(&first[0][0],n,n);
+ printf("Solution Vector\n");
+  seearrayone(b,n);
+  simple_gaus(&first[0][0],b,&work[0][0],sol,n);
+ 
+ 
+ return 0;
+}
+
+void simple_gaus(double *a,double b[],double *w,double x[],int n){
+ double m;
+ int i,j,k;
+ for(i=0;i<n;i++){
+  for(j=0;j<n;j++)
+  WORK(i,j)=A(i,j);
+  
+  WORK(i,n)=b[i];
+ }
+ 
+  /////// Performing Elimination
+  for(i=0;i<n;i++)
+  for(j=0;j<n;j++)
+   if(j!=i){
+    m=WORK(j,i)/WORK(i,i);
+    for(k=i;k<=n;k++)
+    WORK(j,k)-=m*WORK(i,k);    
+   }
+ printf("\nUnknown Vector:\n");
+ for(i=0;i<n;i++){
+ x[i]=WORK(i,n)/WORK(i,i);
+ printf("%.3lf\n",x[i]);
+ 
+ }
+
+ 
+ }
+  
+ void seearraymul(double *a,int m,int n){
+  int i,j;
+  for(i=0;i<m;i++){
+   for(j=0;j<n;j++){
+    
+    printf("%.3lf",A(i,j));
+    
+   }
+   printf("\n");
+  }
+  
+  
+  
+ } 
+ void seearrayone(double a[],int n){
+  int i;
+  for(i=0;i<n;i++){
+   printf("%.3lf",a[i]);
+  }
+  printf("\n");
+ }
+
+//http://acihatbozkurt.blogspot.com/2018/03/simple-gauss-jordan-elimination.html

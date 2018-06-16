@@ -1,0 +1,109 @@
+#include <stdio.h>
+#include <cstdlib>
+#define A(I,J) (*(a+(I)*n+(J)))
+#define B(I,J) (*(b+(I)*p+(J)))
+#define C(I,J) (*(c+(I)*p+(J)))
+// p is the number of column of B and C matrixes.
+void functake(double *a,int m,int n);
+void mat(double *a,double *b,double *c,int m,int n,int p);
+//m number of rows in A , n number of column in A and number of rows in B , p number of column in B
+
+
+
+
+int main(){
+ 
+ int row,col,i,j,row1,col1;
+ printf("row number");
+ scanf("%d",&row);
+ printf("\ncol number");
+ scanf("%d",&col);
+ printf("row number ");
+ scanf("%d",&row1);
+ printf("\ncol number");
+ scanf("%d",&col1);
+ if(col==row1){
+  double a[row][col];
+ double b[row1][col1];
+ double c[row][col1]={0,0};
+
+ 
+ /////////////// Taking Arrays
+printf("\nElements of Array1\n");
+for(i=0;i<row;i++)
+ for(j=0;j<col;j++)
+ scanf("%lf",&a[i][j]);
+
+printf("Elements of Array2\n");
+for(i=0;i<row1;i++)
+ for(j=0;j<col1;j++)
+ scanf("%lf",&b[i][j]);
+
+ ////////////////////////////////
+ system("cls");
+ printf("Array1:\n");
+for(i=0;i<row;i++)
+ {
+  for(j=0;j<col;j++)
+ printf("%.3lf",a[i][j]);
+ 
+ printf("\n");
+ }
+printf("\nArray2;\n");
+for(i=0;i<row1;i++){
+  for(j=0;j<col1;j++)
+ printf("%.3lf",b[i][j]);
+printf("\n");
+ 
+}
+
+
+mat(&a[0][0],&b[0][0],&c[0][0],row,col,col1);
+
+
+
+
+
+ 
+ }else{
+  printf("You should study Lineer Algebra");
+ }
+ 
+
+ 
+
+ return 0;
+}
+
+
+ 
+void mat(double *a,double *b,double *c,int m,int n,int p){
+ double sum;
+ int i,j,k;
+ 
+ 
+ for(i=0;i<m;i++){
+ for(j=0;j<p;j++){
+  sum=0.0;
+  for(k=0;k<n;k++){
+ sum+=A(i,k)*B(k,j);
+  }
+  
+  C(i,j)=sum;
+ }
+}
+
+ printf("RESULT:\n");
+ for(i=0;i<m;i++){
+ for(j=0;j<p;j++)
+ printf("%.3lf",C(i,j));
+
+printf("\n");
+ 
+}
+ 
+ 
+ 
+}
+
+//http://acihatbozkurt.blogspot.com/2018/03/product-of-two-matrices.html
