@@ -1,0 +1,85 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct point{
+ int x;
+ int y;
+ 
+ 
+};
+
+void readStruct(struct point *temp,int num);
+ void writeStruct(struct point *temp,int num);
+  void taskthree(struct point *temp,struct point *temp1,int num);
+  void initstruct(struct point *temp,int num);
+
+int main(){
+ int num;
+ 
+ printf("How many points do you have ?");
+ scanf("%d",&num);
+ 
+  struct point *ball;
+  struct point *A;
+   ball=(struct point *) malloc(num*sizeof(struct point));
+   A=(struct point *) malloc(num*sizeof(struct point));
+   
+   initstruct(A,num);
+  readStruct(ball,num);
+  printf("You Entered:\n");
+  writeStruct(ball,num);
+ printf("\nSquare of x and y coordinate:\n");
+ taskthree(ball,A,num);
+  writeStruct(A,num); 
+ 
+ return 0;
+}
+
+void readStruct(struct point *temp,int num){
+ int i;
+ for(i=0;i<num;i++){
+  printf("Enter x:");
+  scanf("%d",&(temp+i)->x);
+  printf("Enter y:");
+  scanf("%d",&(temp+i)->y);
+ }
+  
+}
+
+void writeStruct(struct point *temp,int num){
+ int i;
+ for(i=0;i<num;i++){
+  printf("X:%d\n",(temp+i)->x);
+  printf("Y:%d\n",(temp+i)->y);
+  printf("//////////\n");
+ }
+
+ 
+}
+
+void taskthree(struct point *temp,struct point *temp1,int num){
+ int i;
+ 
+ for(i=0;i<num;i++){
+  (temp1+i)->x=((temp+i)->x)*((temp+i)->x);
+  (temp1+i)->y=((temp+i)->y)*((temp+i)->y);
+   }
+
+  
+ 
+ 
+ 
+}
+
+void initstruct(struct point *temp,int num){
+ int i;
+ for(i=0;i<num;i++){
+  (temp+i)->x=0;
+  (temp+i)->y=0;
+  
+ }
+ 
+ 
+ 
+ 
+}
