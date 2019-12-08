@@ -1,72 +1,60 @@
 #include <stdio.h>
 
-int main()
- {
-
+int main(){
 int exit;
 int k=1;
 printf("Press -1 to exit\n");
-
 printf("To continue press any integer.");
-
 scanf("%d",&exit);
- 
 
 while(exit!=-1){
- int number,base,remainder,counter=0;
-int parametre=0;
-printf("Number in decimal base:");
-scanf("%d",&number);
-printf("Base you want to convert.");
-scanf("%d",&base);
+    int number,base,remainder,counter=0;
+    int parametre=0;
+    int control;
+    printf("Number in decimal base:");
+    scanf("%d",&number);
+    printf("Base you want to convert.");
+    scanf("%d",&base);
+    int array[100]={0};
+    
+    while(number>=0)
+    {
+        if(number==1|| number==0)
+        {
+        array[parametre]=number;
+        break;
+        }
+        remainder=number%base;//
+        array[parametre]=remainder;
+        number=(number-remainder)/base;
+        parametre++;
+        counter++;
 
+    }
 
-int array[100]={0};
-while(number>=0){
+    
+    
+    for( control=counter;control>=0;control--)
+    {
+        printf("%d",array[control]);
+        printf(" ");
+    }
+    
+    printf("\n");
+    
+    if(k==5)
+    {
+    printf("Press -1 to exit\n");
+    printf("To continue press any key.");
+    scanf("%d",&exit);
+    k=1;
+    }
 
- if(number==1|| number==0){
+    k++;
+    
+    }
 
-  array[parametre]=number;
-
-  break;
-
-
- }
-  remainder=number%base;//
-
- array[parametre]=remainder;
-
- number=(number-remainder)/base;
-
- parametre++;
- counter++;
-
-}
-int control;
-for( control=counter;control>=0;control--){
-
- printf("%d",array[control]);
- printf(" ");
-}
-
- printf("\n");
-
- if(k==5){
-  printf("Press -1 to exit\n");
-
-printf("To continue press any key.");
-
-scanf("%d",&exit);
-
-
-k=1;
-
-
- }
- k++;
-}
-
-return 0;
+    return 0;
 }
 
 //http://acihatbozkurt.blogspot.com/2017/10/10luk-tabandan-diger-tabanlara-ceviren.html
