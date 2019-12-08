@@ -5,8 +5,6 @@
 int main(){
 int x=8;
 srand(time(NULL));
-
-
 {
  int x=rand()%6;
  printf("%d",x);
